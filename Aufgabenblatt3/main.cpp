@@ -38,14 +38,14 @@ glm::vec3 sunColor = glm::vec3(1.0f, 1.0f, 0.0f);
 cg::Sphere* earth = nullptr;
 float earthSize = 0.4;
 float earthAngle = 0;
-float earthAngleFactor = 0.01f;
+float earthAngleFactor = 0.015f;
 float earthRotationAxisX = 0;
 float earthRotationAxisY = 0;
 float earthRotationAxisZ = 0;
 float earthRotationAxisXFactor = 0;
 float earthRotationAxisYFactor = 1.0f;
 float earthRotationAxisZFactor = 0;
-glm::vec3 earthPos = glm::vec3(3, 0, 0);
+glm::vec3 earthPos = glm::vec3(-3, 0, 0);
 glm::vec3 earthColor = glm::vec3(0.0f, 0.0f, 1.0f);
 
 /*
@@ -65,6 +65,99 @@ float marsRotationAxisYFactor = 1.0f;
 float marsRotationAxisZFactor = 0;
 glm::vec3 marsPos = glm::vec3(5, 0, 0);
 glm::vec3 marsColor = glm::vec3(1.0f, 0.0f, 0.0f);
+
+
+cg::Sphere* moon1 = nullptr;
+float moon1Size = 0.4;
+float moon1Angle = 0;
+float moon1AngleFactor = 0.01f;
+float moon1RotationAxisX = 0;
+float moon1RotationAxisY = 0;
+float moon1RotationAxisZ = 0;
+float moon1RotationAxisXFactor = 0;
+float moon1RotationAxisYFactor = 1.0f;
+float moon1RotationAxisZFactor = 0;
+glm::vec3 moon1Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon1Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
+cg::Sphere* moon2 = nullptr;
+float moon2Size = 0.4;
+float moon2Angle = 0;
+float moon2AngleFactor = 0.01f;
+float moon2RotationAxisX = 0;
+float moon2RotationAxisY = 0;
+float moon2RotationAxisZ = 0;
+float moon2RotationAxisXFactor = 0;
+float moon2RotationAxisYFactor = 1.0f;
+float moon2RotationAxisZFactor = 0;
+glm::vec3 moon2Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon2Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
+cg::Sphere* moon3 = nullptr;
+float moon3Size = 0.4;
+float moon3Angle = 0;
+float moon3AngleFactor = 0.01f;
+float moon3RotationAxisX = 0;
+float moon3RotationAxisY = 0;
+float moon3RotationAxisZ = 0;
+float moon3RotationAxisXFactor = 0;
+float moon3RotationAxisYFactor = 1.0f;
+float moon3RotationAxisZFactor = 0;
+glm::vec3 moon3Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon3Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
+cg::Sphere* moon4 = nullptr;
+float moon4Size = 0.4;
+float moon4Angle = 0;
+float moon4AngleFactor = 0.01f;
+float moon4RotationAxisX = 0;
+float moon4RotationAxisY = 0;
+float moon4RotationAxisZ = 0;
+float moon4RotationAxisXFactor = 0;
+float moon4RotationAxisYFactor = 1.0f;
+float moon4RotationAxisZFactor = 0;
+glm::vec3 moon4Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon4Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
+cg::Sphere* moon5 = nullptr;
+float moon5Size = 0.4;
+float moon5Angle = 0;
+float moon5AngleFactor = 0.01f;
+float moon5RotationAxisX = 0;
+float moon5RotationAxisY = 0;
+float moon5RotationAxisZ = 0;
+float moon5RotationAxisXFactor = 0;
+float moon5RotationAxisYFactor = 1.0f;
+float moon5RotationAxisZFactor = 0;
+glm::vec3 moon5Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon5Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
+cg::Sphere* moon6 = nullptr;
+float moon6Size = 0.4;
+float moon6Angle = 0;
+float moon6AngleFactor = 0.01f;
+float moon6RotationAxisX = 0;
+float moon6RotationAxisY = 0;
+float moon6RotationAxisZ = 0;
+float moon6RotationAxisXFactor = 0;
+float moon6RotationAxisYFactor = 1.0f;
+float moon6RotationAxisZFactor = 0;
+glm::vec3 moon6Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon6Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
+cg::Sphere* moon7 = nullptr;
+float moon7Size = 0.4;
+float moon7Angle = 0;
+float moon7AngleFactor = 0.01f;
+float moon7RotationAxisX = 0;
+float moon7RotationAxisY = 0;
+float moon7RotationAxisZ = 0;
+float moon7RotationAxisXFactor = 0;
+float moon7RotationAxisYFactor = 1.0f;
+float moon7RotationAxisZFactor = 0;
+glm::vec3 moon7Pos = glm::vec3(3, 0, 0);
+glm::vec3 moon7Color = glm::vec3(0.0f, 0.0f, 1.0f);
+
 
 
 cg::Line* sunLine = nullptr;
@@ -127,6 +220,13 @@ void release()
 	delete sunLine;
 	delete earthLine;
 	delete marsLine;
+	delete moon1;
+	delete moon2;
+	delete moon3;
+	delete moon4;
+	delete moon5;
+	delete moon6;
+	delete moon7;
 }
 
 /*
