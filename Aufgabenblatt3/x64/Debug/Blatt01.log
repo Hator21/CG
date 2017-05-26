@@ -1,18 +1,18 @@
-﻿Der Buildvorgang wurde am 25.05.2017 22:30:36 gestartet.
+﻿Der Buildvorgang wurde am 26.05.2017 19:02:49 gestartet.
      1>Projekt "C:\Users\Alexander\git\CG\Aufgabenblatt3\Blatt01.vcxproj" auf Knoten "2", Build Ziel(e).
      1>ClCompile:
          D:\Programmierumgebungen\VS2013\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt main.cpp
          main.cpp
      1>main.cpp(24): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
      1>main.cpp(39): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(57): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(71): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(84): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(97): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(110): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(123): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(136): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
-     1>main.cpp(149): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(58): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(73): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(86): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(99): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(112): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(125): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(138): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
+     1>main.cpp(151): warning C4305: 'Initialisierung': Verkürzung von 'double' in 'float'
        Link:
          D:\Programmierumgebungen\VS2013\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Alexander\git\CG\Aufgabenblatt3\x64\Debug\Blatt01.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Alexander\git\CG\Aufgabenblatt3\x64\Debug\Blatt01.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Alexander\git\CG\Aufgabenblatt3\x64\Debug\Blatt01.lib" /MACHINE:X64 x64\Debug\GLSLProgram.obj
          x64\Debug\main.obj
@@ -26,4 +26,4 @@
 
 Build erfolgreich.
 
-Verstrichene Zeit 00:00:00.95
+Verstrichene Zeit 00:00:01.14
