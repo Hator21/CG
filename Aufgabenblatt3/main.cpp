@@ -398,18 +398,20 @@ void render()
 
 	mars->model = glm::scale(mars->model, glm::vec3(1 / marsSize));
 	mars->model = glm::rotate(mars->model, glm::radians(-marsRotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
-	mars->model = glm::rotate(mars->model, glm::radians(-marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
+	mars->model = glm::rotate(mars->model, glm::radians(-marsRotationAxisY), glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f)));
 	mars->model = glm::translate(mars->model, marsPos);
 
 	marsLine->model = glm::scale(marsLine->model, glm::vec3(1 / marsSize));
 	marsLine->model = glm::rotate(marsLine->model, glm::radians(-marsRotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
-	marsLine->model = glm::rotate(marsLine->model, glm::radians(-marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
+	//marsLine->model = glm::rotate(marsLine->model, glm::radians(-marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
 	marsLine->model = glm::translate(marsLine->model, marsPos);
 
-	moon4->model = glm::scale(moon4->model, glm::vec3(1 / moon1Size));
-	moon4->model = glm::rotate(moon4->model, glm::radians(-marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
 	moon4->model = glm::translate(moon4->model, marsPos);
 	moon4->model = glm::translate(moon4->model, -moon4Pos);
+	moon4->model = glm::scale(moon4->model, glm::vec3(1 / moon1Size));
+	//moon4->model = glm::rotate(moon4->model, glm::radians(-moon4RotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
+	moon4->model = glm::rotate(moon4->model, glm::radians(-marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
+	moon4->model = glm::rotate(moon4->model, glm::radians(-moon4RotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
 
 	moon5->model = glm::scale(moon5->model, glm::vec3(1 / moon2Size));
 	moon5->model = glm::rotate(moon5->model, glm::radians(-marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -444,19 +446,21 @@ void render()
 
 
 	mars->model = glm::translate(mars->model, marsPos);
-	mars->model = glm::rotate(mars->model, glm::radians(marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
+	mars->model = glm::rotate(mars->model, glm::radians(marsRotationAxisY), glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f)));
 	mars->model = glm::rotate(mars->model, glm::radians(marsRotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
 	mars->model = glm::scale(mars->model, glm::vec3(marsSize));
 	
 	marsLine->model = glm::translate(marsLine->model, marsPos);
-	marsLine->model = glm::rotate(marsLine->model, glm::radians(marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
+	//marsLine->model = glm::rotate(marsLine->model, glm::radians(marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
 	marsLine->model = glm::rotate(marsLine->model, glm::radians(marsRotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
 	marsLine->model = glm::scale(marsLine->model, glm::vec3(marsSize));
 
-	moon4->model = glm::translate(moon4->model, marsPos);
+	moon4->model = glm::rotate(moon4->model, glm::radians(marsRotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
 	moon4->model = glm::rotate(moon4->model, glm::radians(marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));
-
+	//moon4->model = glm::rotate(moon4->model, glm::radians(marsRotationAxisZ), glm::vec3(0.0f, 0.0f, 1.0f));
 	moon4->model = glm::scale(moon4->model, glm::vec3(moon4Size));
+	moon4->model = glm::translate(moon4->model, moon4Pos);
+	moon4->model = glm::translate(moon4->model, -marsPos);
 
 	moon5->model = glm::translate(moon5->model, marsPos);
 	moon5->model = glm::rotate(moon5->model, glm::radians(marsRotationAxisY), glm::vec3(0.0f, 1.0f, 0.0f));

@@ -1,0 +1,6 @@
+﻿  main.cpp
+main.cpp(263): warning C4305: '+=': Verkürzung von 'double' in 'float'
+main.cpp(264): warning C4305: '+=': Verkürzung von 'double' in 'float'
+  Blatt01.vcxproj -> C:\Users\Jonas-Lampe\Desktop\Blatt03\x64\Debug\Blatt01.exe
+  C:\Users\Jonas-Lampe\Desktop\Blatt03\libs\glew-1.13.0\bin\Release\x64\glew32.dll
+  1 Datei(en) kopiert
