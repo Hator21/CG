@@ -54,11 +54,11 @@ namespace cg
 
 		void spawnMoons() {
 			planets.push_back(Planet(3,  0, 0.5f, 0.5, glm::vec3(0, 0, 1), view, projection));
-			planets.push_back(Planet(-6, 0, 0.4f, 0.5, glm::vec3(1, 0, 0), view, projection));
+			planets.push_back(Planet(6, 180, 0.4f, 0.5, glm::vec3(1, 0, 0), view, projection));
 			planets.push_back(Planet(1, 0, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));
 			planets.push_back(Planet(1, 120, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));
 			planets.push_back(Planet(1, 240, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));
-			planets.push_back(Planet(1, 0, 0.1f, 2, glm::vec3(0, 1,0), view, projection));
+			planets.push_back(Planet(1, 0, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));
 			planets.push_back(Planet(1, 90, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));
 			planets.push_back(Planet(1, 180, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));
 			planets.push_back(Planet(1, 270, 0.1f, 2, glm::vec3(1, 1, 1), view, projection));

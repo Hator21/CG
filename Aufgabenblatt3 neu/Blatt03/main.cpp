@@ -10,6 +10,7 @@
 
 #include "Sphere.h"
 #include "Planet.h"
+#include "Line.h"
 
 #define WINDOW_WIDTH 1440
 #define WINDOW_HEIGHT 1080
@@ -17,6 +18,13 @@
 cg::Planet* sun = nullptr;
 cg::Sphere* sphere = nullptr;
 float rotationSpeed = 0.01f;
+float earthangle = 0;
+float marsangle = 0;
+float marsZAngle = 45;
+
+cg::Line* sunLine = nullptr;
+cg::Line* earthLine = nullptr;
+cg::Line* marsLine = nullptr;
 
 glm::mat4x4 view;
 glm::mat4x4 projection;
@@ -30,6 +38,9 @@ Release resources on termination.
 void release()
 {
 	delete sun;
+	delete sunLine;
+	delete earthLine;
+	delete marsLine;
 }
 
 /*
@@ -56,7 +67,10 @@ bool init()
 	try
 	{
 		sun = new cg::Planet(0, 0, 1, 0, glm::vec3(1, 1, 0), view, projection);
-		sphere = new cg::Sphere(glm::vec3(1, 1, 0));
+
+		sunLine = new cg::Line(glm::vec3(1, 1, 1));
+		earthLine = new cg::Line(glm::vec3(1, 1, 1));
+		marsLine = new cg::Line(glm::vec3(1, 1, 1));
 
 		sun->spawnMoons();
 	}
@@ -83,19 +97,41 @@ void rotateSphere(cg::Planet* p, float angle, glm::vec3 vecR) {
 void scaleSphere(cg::Planet* p, glm::vec3 vecS) {
 	p->getSphere()->model = glm::scale(p->getSphere()->model, vecS);
 }
-float earthangle = 0;
-float marsangle = 0;
+
+void translateLine(cg::Line* p, glm::vec3 vecT) {
+	p->model = glm::translate(p->model, vecT);
+}
+void rotateLine(cg::Line* p, float angle, glm::vec3 vecR) {
+	p->model = glm::rotate(p->model, angle, vecR);
+}
+void scaleLine(cg::Line* p, glm::vec3 vecS) {
+	p->model = glm::scale(p->model, vecS);
+}
+
 void render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	rotateSphere(sun, rotationSpeed, glm::normalize(glm::vec3(0, 1, 0)));
+	rotateLine(sunLine, rotationSpeed, glm::normalize(glm::vec3(0, 1, 0)));
+
 	translateSphere(&sun->planets[0], glm::vec3(
+		cos(glm::radians(sun->planets[0].angle))*sun->planets[0].radius,
+		0,
+		sin(glm::radians(sun->planets[0].angle))*sun->planets[0].radius
+	));
+	translateLine(earthLine, glm::vec3(
 		cos(glm::radians(sun->planets[0].angle))*sun->planets[0].radius,
 		0,
 		sin(glm::radians(sun->planets[0].angle))*sun->planets[0].radius
 	));
 
 	translateSphere(&sun->planets[1], glm::vec3(
+		cos(glm::radians(sun->planets[1].angle))*sun->planets[1].radius,
+		0,
+		sin(glm::radians(sun->planets[1].angle))*sun->planets[1].radius
+	));
+	translateLine(marsLine, glm::vec3(
 		cos(glm::radians(sun->planets[1].angle))*sun->planets[1].radius,
 		0,
 		sin(glm::radians(sun->planets[1].angle))*sun->planets[1].radius
@@ -157,31 +193,57 @@ void render()
 	);
 
 	rotateSphere(&sun->planets[0], earthangle, glm::normalize(glm::vec3(0, 1, 0)));
-	rotateSphere(&sun->planets[1], 45, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateLine(earthLine, earthangle, glm::normalize(glm::vec3(0, 1, 0)));
+	rotateSphere(&sun->planets[1], marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateLine(marsLine, marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
 	rotateSphere(&sun->planets[1], marsangle, glm::normalize(glm::vec3(0, 1, 0)));
+	rotateLine(marsLine, marsangle, glm::normalize(glm::vec3(0, 1, 0)));
+	rotateSphere(&sun->planets[5], marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[6], marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[7], marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[8], marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
 
 	for (int i = 0; i < 9; i++) {
 		scaleSphere(&sun->planets[i], glm::vec3(sun->planets[i].getSize()));
 	}
 	
-	
 	sun->show(view, projection);
-
+	sunLine->render(view, projection);
+	earthLine->render(view, projection);
+	marsLine->render(view, projection);
 
 	for (int i = 0; i < 9; i++) {
 		scaleSphere(&sun->planets[i], glm::vec3(1 / sun->planets[i].getSize()));
 	}
 
 	rotateSphere(&sun->planets[0], -earthangle, glm::normalize(glm::vec3(0, 1, 0)));
+	rotateLine(earthLine, -earthangle, glm::normalize(glm::vec3(0, 1, 0)));
 	rotateSphere(&sun->planets[1], -marsangle, glm::normalize(glm::vec3(0, 1, 0)));
-	rotateSphere(&sun->planets[1], -45, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateLine(marsLine, -marsangle, glm::normalize(glm::vec3(0, 1, 0)));
+	rotateSphere(&sun->planets[1], -marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateLine(marsLine, -marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[5], -marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[6], -marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[7], -marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
+	rotateSphere(&sun->planets[8], -marsZAngle, glm::normalize(glm::vec3(0, 0, 1)));
 	
 	translateSphere(&sun->planets[0], glm::vec3(
 		-cos(glm::radians(sun->planets[0].angle))*sun->planets[0].radius,
 		0,
 		-sin(glm::radians(sun->planets[0].angle))*sun->planets[0].radius
 	));
+	translateLine(earthLine, glm::vec3(
+		-cos(glm::radians(sun->planets[0].angle))*sun->planets[0].radius,
+		0,
+		-sin(glm::radians(sun->planets[0].angle))*sun->planets[0].radius
+	));
+
 	translateSphere(&sun->planets[1], glm::vec3(
+		-cos(glm::radians(sun->planets[1].angle))*sun->planets[1].radius,
+		0,
+		-sin(glm::radians(sun->planets[1].angle))*sun->planets[1].radius
+	));
+	translateLine(marsLine, glm::vec3(
 		-cos(glm::radians(sun->planets[1].angle))*sun->planets[1].radius,
 		0,
 		-sin(glm::radians(sun->planets[1].angle))*sun->planets[1].radius
@@ -243,9 +305,6 @@ void render()
 		- sin(glm::radians(sun->planets[1].angle))*sun->planets[1].radius)
 	);
 
-
-	
-
 	sun->orbit();
 
 	earthangle += 0.01;
@@ -271,35 +330,40 @@ void keyboard(GLFWwindow* window, unsigned int codepoint)
 {
 	switch (codepoint)
 	{
-	case '+':
-		sun->getSphere()->model = glm::scale(sun->getSphere()->model, glm::vec3(1.2f));
+	case 'w':
+		rotationSpeed *= 0.8f;
+		for (int i = 0; i < 9; i++) {
+			sun->planets[i].orbitspeed *= 0.8f;
+		}
 		break;
-	case '-':
-		sun->getSphere()->model = glm::scale(sun->getSphere()->model, glm::vec3(0.8f));
+	case 'W':
+		rotationSpeed *= 1.2f;
+		for (int i = 0; i < 9; i++) {
+			sun->planets[i].orbitspeed *= 1.2f;
+		}
 		break;
-	case 'x':
-		sun->getSphere()->model = glm::rotate(sun->getSphere()->model, 0.1f, glm::normalize(glm::vec3(1.0f, 0.0f, 0.0f)));
+	case 'p':
+		if (marsZAngle > 0) {
+			marsZAngle -= 1/360;
+		}
 		break;
-	case 'X':
-		sun->getSphere()->model = glm::rotate(sun->getSphere()->model, -0.1f, glm::normalize(glm::vec3(1.0f, 0.0f, 0.0f)));
+	case 'P':
+		if (marsZAngle < 1) {
+			marsZAngle += 1/360;
+		}
 		break;
-	case 'y':
-		sun->getSphere()->model = glm::rotate(sun->getSphere()->model, 0.1f, glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f)));
+	case 's':
+		sun->getSphere()->model = glm::rotate(sun->getSphere()->model, -0.1f, glm::vec3(0, 0, 1));
+		sunLine->model = glm::rotate(sunLine->model, -0.1f, glm::vec3(0, 0, 1));
 		break;
-	case 'Y':
-		sun->getSphere()->model = glm::rotate(sun->getSphere()->model, -0.1f, glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f)));
-		break;
-	case 'z':
-		sun->planets[1].getSphere()->model = glm::rotate(sun->planets[1].getSphere()->model, 0.1f, glm::normalize(glm::vec3(0.0f, 0.0f, 1.0f)));
-		break;
-	case 'Z':
-		sun->planets[1].getSphere()->model = glm::rotate(sun->planets[1].getSphere()->model, -0.1f, glm::normalize(glm::vec3(0.0f, 0.0f, 1.0f)));
+	case 'S':
+		sun->getSphere()->model = glm::rotate(sun->getSphere()->model, 0.1f, glm::vec3(0, 0, 1));
+		sunLine->model = glm::rotate(sunLine->model, 0.1f, glm::vec3(0, 0, 1));
 		break;
 	}
 }
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv){
 	GLFWwindow* window;
 
 	// Initialize glfw library (window toolkit).
